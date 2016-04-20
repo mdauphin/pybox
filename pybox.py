@@ -8,7 +8,9 @@ class ProxyCmd(object):
     def __init__(self,parent_class):
         self.parent_class = parent_class
     def process(self,line):
-        print self.parent_class.process(line)
+        ret = self.parent_class.process(line)
+        if ret != None:
+            print ret
 
 class BoxCmd(cmd.Cmd):
     def do_EOF(self, line):
