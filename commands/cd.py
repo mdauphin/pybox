@@ -1,5 +1,6 @@
 from icommand import icommand
 import os
-class Rm(icommand):
+
+class Cmd(icommand):
     def process(self,line):
-        os.remove(line.strip())
+        os.chdir(os.path.expandvars(line))

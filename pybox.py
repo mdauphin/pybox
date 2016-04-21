@@ -13,7 +13,8 @@ class ProxyCmd(object):
             print ret
 
 class BoxCmd(cmd.Cmd):
-    def do_EOF(self, line):
+    prompt = '$ '
+    def do_exit(self, line):
         return True
 
 def main():
@@ -26,7 +27,7 @@ def main():
                 if (inspect.isclass(attr)
                         and inspect.getmodule(attr)==module
                         and issubclass(attr,icommand.icommand)):
-                    print "Load %s" % cls
+                    print "Load %s" % shortname
                     proxy = ProxyCmd(attr())
                     setattr(BoxCmd, 'do_%s'%shortname, proxy.process )
     BoxCmd().cmdloop()
